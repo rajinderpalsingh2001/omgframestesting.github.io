@@ -73,14 +73,17 @@ function lightdark(dom) {
     link.type = 'text/css';
     link.href = 'css/darkdashboard.css';
     var img = document.querySelector('img[alt="omglogo"]');
+    var labeldl=document.getElementById("darklighttext");
     if(dom.getAttribute('checked')!=""){
         localStorage.setItem("theme","light");
         head[0].removeChild(head[0].lastChild);
         dom.setAttribute("checked","");
+        labeldl.innerText="Light";
         img.src="images/omglogo.png";
     }else{
         localStorage.setItem("theme","dark");
         img.src="images/omglogodark.png";
+        labeldl.innerText="Dark";
         dom.removeAttribute("checked");
         head[0].appendChild(link);
     }
@@ -95,8 +98,10 @@ onload=function () {
         link.href = 'css/darkdashboard.css';
         var dom=document.getElementById('lightdarkbtn');
         var img = document.querySelector('img[alt="omglogo"]');
+        var labeldl=document.getElementById("darklighttext");
 
         img.src="images/omglogodark.png";
+        labeldl.innerText="Dark";
         dom.removeAttribute("checked");
         head[0].appendChild(link);
     }

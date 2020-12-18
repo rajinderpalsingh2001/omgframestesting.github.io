@@ -38,7 +38,7 @@ nav.main-nav li.active > a {
 .select[selected]{
     color: #f8f9fa !important;
 }
-img[alt="delete"],img[alt="edit"],img[alt="undo"],img[alt="redo"]{
+img[alt="delete"],img[alt="edit"],img[alt="undo"],img[alt="redo"],img[alt="darkmode"]{
     filter:invert(100%);
 }
 .navbar-toggler{
