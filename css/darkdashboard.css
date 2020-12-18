@@ -17,10 +17,10 @@ nav.main-nav li.active > a {
     color: #f8f9fa;
 }
 .addborderbottom {
-    border-bottom: 1px solid #f8f9fa;
+    border-bottom: 1px solid #7d7d7d;
 }
 .addborderright {
-    border-right: 1px solid #f8f9fa;
+    border-right: 1px solid #7d7d7d;
 }
 .nav-text,a,span,div,p{
     color:#f8f9fa !important ;

@@ -43,10 +43,10 @@ canvas {
 }
 
 .addborderbottom {
-    border-bottom: 1px solid #343a40;
+    border-bottom: 1px solid #bdbdbd;
 }
 .addborderright {
-    border-right: 1px solid #343a40;
+    border-right: 1px solid #bdbdbd;
 }
 
 .select-container {

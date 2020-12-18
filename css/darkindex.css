@@ -17,9 +17,7 @@ a,div,p{
     color:#f8f9fa;
     border-color: #f8f9fa;
 }
-.addshadow{
-    box-shadow: 0 4px 8px 0 rgb(248, 249, 250), 0 6px 20px 0 rgb(248, 249, 250);
-}
+
 .infosmall{
     color: #b1afaf !important;
 }
@@ -29,6 +27,6 @@ a,div,p{
 .navbar-toggler{
     filter: invert(100%);
 }
-
-
-
+.addborderbottom {
+    border-bottom: 1px solid #7d7d7d;
+}
