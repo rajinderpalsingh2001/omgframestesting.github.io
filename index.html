@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Badge Generator - OMG - Developer Student Clubs</title>
+    <meta name="description" content="Badge Generator - OMG - Developer Student Clubs"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link crossorigin="anonymous" href="https://fonts.googleapis.com/icon?family=Google+Sans:400&display=swap"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styleindex.css">
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #0046ff;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0046ff;
+        }
+
+        .hidescroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hidescroll {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top addshadow">
+    <div><img class="navbar-brand" style="height:45px;padding-right:5px;" src="images/omglogo.png" alt="omglogo"></div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu" aria-controls="navmenu"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <div style="padding-right: 20px;padding-top: 5px;">
+            <span style="font-size: 15px;">Dark</span>
+            <label class="switch">
+                <input type="checkbox" checked onchange="lightdark(this);" id="lightdarkbtn">
+                <span class="slider round"></span>
+            </label>
+            <span style="font-size: 15px;">Light</span>
+        </div>
+
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#loginpopup">
+            Login
+        </button>
+
+    </div>
+
+</nav>
+
+<div class="container-fluid">
+    <div class="row" style="padding-top: 10px;">
+        <div class="col-md-6">
+            <div class="container">
+                <p class="mainbannertext">Welcome to <span style="color: #0046ff">OMG Frames</span></p>
+                <p class="mainbannertext">Develop frames for your favourite events</p>
+                <span class="subbannertext">Build a beautiful, modern frames with fully customizable color template.</span>
+
+                <div class="text-center row">
+                    <div class="col-6">
+                        <button type="button" onclick="window.open('dashboard.html')" class="btn btn-primary"
+                                style="width: 150px;">View Dashboard
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-outline-primary" style="width: 150px">View Gallery</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <img class="img-fluid mainbanner" src="svglogos/undraw_creative_team_r90h_2_1.svg" alt="">
+        </div>
+    </div>
+    <div class="container row" style="padding: 50px;">
+        <div class="col-md-6">
+            <span class="someiconsbackground">
+                <img src="svglogos/stacked-files.svg" alt="" class="someicons">
+            </span>
+            <p style="font-size: 20px;font-weight: bold;padding-top: 10px;">Build for Developers</p>
+            <p class="infosmall">The Front is build to make your life easier.Variables, build tooling, documentation,
+                and reusable components.</p>
+
+        </div>
+        <div class="col-md-6">
+            <span class="someiconsbackground">
+                <img src="svglogos/diamond.svg" alt="" class="someicons">
+            </span>
+            <p style="font-size: 20px;font-weight: bold;padding-top: 10px;">Designed to be Modern</p>
+            <p class="infosmall">Designed with the latest design trends in mind.The Front feels modern, minimal and beautiful.</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginpopup" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title w-100">Account Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="E-mail">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-block btn-primary" type="button">SIGN IN</button>
+                </div>
+                <div class="form-group text-center">
+                    <span class="infosmall">Forgot <a href="#">Email/Password</a>?</span>
+                </div>
+                <div class="form-group text-center">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#signuppopup" onclick="$('#loginpopup').modal('hide')">
+                        Create an Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Login Modal-->
+
+<!--Sign Up Modal-->
+<div class="modal fade" id="signuppopup" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: auto">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title w-100">Create Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="E-mail">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    Account Type
+                    <select class="btn btn-primary">
+                        <option value="Organizer">Organizer</option>
+                        <option value="User">User</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Organization Name">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-block btn-primary" type="button">SIGN UP</button>
+                </div>
+                <div class="form-group text-center">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#loginpopup" onclick="$('#signuppopup').modal('hide')">
+                        Already have Account?
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Sign Up Modal-->
+
+<script>
+    function lightdark(dom) {
+        var link = document.createElement('link');
+        var head=document.getElementsByTagName("head");
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/darkindex.css';
+        var img = document.querySelector('img[alt="omglogo"]');
+        if(dom.getAttribute('checked')!=""){
+            localStorage.setItem("theme","light");
+            head[0].removeChild(head[0].lastChild);
+            dom.setAttribute("checked","");
+            img.src="images/omglogo.png";
+        }else{
+            localStorage.setItem("theme","dark");
+            img.src="images/omglogodark.png";
+            dom.removeAttribute("checked");
+            head[0].appendChild(link);
+        }
+    }
+
+    onload=function () {
+        if(localStorage.getItem("theme")=="dark"){
+            var link = document.createElement('link');
+            var head=document.getElementsByTagName("head");
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/darkindex.css';
+            var dom=document.getElementById('lightdarkbtn');
+            var img = document.querySelector('img[alt="omglogo"]');
+
+            img.src="images/omglogodark.png";
+            dom.removeAttribute("checked");
+            head[0].appendChild(link);
+        }
+    }
+</script>
+</body>
+</html>

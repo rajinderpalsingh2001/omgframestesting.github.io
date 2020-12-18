@@ -1,0 +1,31 @@
+/*#343a40 black*/
+/*#f8f9fa white*/
+.modal-content,.navbar,.main-nav,body{
+    background: #343a40 !important;
+}
+
+.close{
+    color: #f8f9fa;
+}
+.close:hover{
+    color: #f8f9fa;
+}
+a,div,p{
+    color:#f8f9fa !important ;
+}
+.btn-outline-primary{
+    color:#f8f9fa;
+    border-color: #f8f9fa;
+}
+.addshadow{
+    box-shadow: 0 4px 8px 0 rgb(248, 249, 250), 0 6px 20px 0 rgb(248, 249, 250);
+}
+.infosmall{
+    color: #b1afaf !important;
+}
+.subbannertext {
+    color: #b1afaf !important;
+}
+
+
+

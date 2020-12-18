@@ -1,0 +1,42 @@
+/*#343a40 black*/
+/*#f8f9fa white*/
+.modal-content,.navbar,.main-nav,body{
+    background: #343a40 !important;
+}
+.main-nav img{
+    filter: invert(100%);
+}
+.main-nav li:hover > a,
+nav.main-nav li.active > a {
+    filter:invert(45%) sepia(234%) saturate(7349%) hue-rotate(229deg) brightness(120%) contrast(205%);
+}
+.close{
+    color: #f8f9fa;
+}
+.close:hover{
+    color: #f8f9fa;
+}
+.nav-text,a,span,div,p{
+    color:#f8f9fa !important ;
+}
+.btn-outline-primary{
+    color:#f8f9fa;
+    border-color: #f8f9fa;
+}
+.addshadow{
+    box-shadow: 0 4px 8px 0 rgb(248, 249, 250), 0 6px 20px 0 rgb(248, 249, 250);
+}
+.main-nav{
+    box-shadow: 0 4px 8px 0 rgb(248, 249, 250), 0 6px 20px 0 rgb(248, 249, 250);
+}
+.select{
+    color: #0046ff !important;
+}
+.select[selected]{
+    color: #f8f9fa !important;
+}
+img[alt="delete"],img[alt="edit"],img[alt="undo"],img[alt="redo"]{
+    filter:invert(100%);
+}
+
+
