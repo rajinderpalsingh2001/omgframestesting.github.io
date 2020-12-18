@@ -1,7 +1,10 @@
 /*#343a40 black*/
 /*#f8f9fa white*/
-.modal-content,.navbar,.main-nav,body{
+.modal-content,.navbar,body{
     background: #343a40 !important;
+}
+.main-nav{
+    background: #2b3036 !important;
 }
 .main-nav img{
     filter: invert(100%);
