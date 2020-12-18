@@ -139,3 +139,9 @@ input:checked + .slider:before {
 .infosmall{
     color:grey;
 }
+.addborderbottom {
+    border-bottom: 1px solid #343a40;
+}
+.addborderright {
+    border-right: 1px solid #343a40;
+}

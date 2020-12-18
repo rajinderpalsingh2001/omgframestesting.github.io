@@ -26,6 +26,9 @@ a,div,p{
 .subbannertext {
     color: #b1afaf !important;
 }
+.navbar-toggler{
+    filter: invert(100%);
+}
 
 
 

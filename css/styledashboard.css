@@ -42,12 +42,11 @@ canvas {
     /*background: red;*/
 }
 
-.addborderleft {
-    border-right: 1px solid #e5e5e5;
+.addborderbottom {
+    border-bottom: 1px solid #343a40;
 }
-
-.addshadow {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.addborderright {
+    border-right: 1px solid #343a40;
 }
 
 .select-container {
