@@ -38,5 +38,8 @@ nav.main-nav li.active > a {
 img[alt="delete"],img[alt="edit"],img[alt="undo"],img[alt="redo"]{
     filter:invert(100%);
 }
+.navbar-toggler{
+    filter: invert(100%);
+}
 
 
