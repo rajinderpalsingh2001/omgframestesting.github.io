@@ -3,7 +3,9 @@
 .modal-content,.navbar,.main-nav,body{
     background: #343a40 !important;
 }
-
+.bluecolor{
+    color: #007bff;
+}
 .close{
     color: #f8f9fa;
 }
