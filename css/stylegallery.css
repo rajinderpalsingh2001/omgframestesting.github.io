@@ -202,9 +202,6 @@ input:checked + .slider:before {
     color:red;
     padding: 2px 2px;
 }
-.dropdown-divider{
-    border-color: #bdbdbd;
-}
-.nav-link{
-    cursor: pointer;
+#alerttext{
+    color:black;
 }

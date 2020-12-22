@@ -39,6 +39,7 @@ a,div,p{
 .dropdown-divider{
     border-color: #7d7d7d;
 }
-#alerttext{
-    color:black !important;
+.alertpopup {
+    background: #343a40;
+    border-radius: 10px;
 }

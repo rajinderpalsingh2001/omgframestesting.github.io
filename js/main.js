@@ -66,3 +66,12 @@ function addselected(add) {
 
 }
 
+function opengallery(){
+    var token=sessionStorage.getItem('token');
+    if(token==null){
+        $('#loginpopup').modal('show');
+    }else{
+        window.open('gallery.html','_parent');
+    }
+}
+

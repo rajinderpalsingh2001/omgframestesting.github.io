@@ -163,3 +163,18 @@ input:checked + .slider:before {
         margin: 0.5rem 130px;
     }
 }
+.error{
+    color:red;
+    padding: 2px 2px;
+}
+.dropdown-divider{
+    border-color: #bdbdbd;
+}
+.nav-link{
+    cursor: pointer;
+}
+.alertpopup {
+    background: #f8f9fa;
+    border-radius: 10px;
+    color: black;
+}

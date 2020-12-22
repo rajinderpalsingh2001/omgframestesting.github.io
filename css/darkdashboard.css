@@ -44,5 +44,14 @@ img[alt="delete"],img[alt="edit"],img[alt="undo"],img[alt="redo"],img[alt="darkm
 .navbar-toggler{
     filter: invert(100%);
 }
-
+.error{
+    color:#13de22;
+    padding: 2px 2px;
+}
+.dropdown-divider{
+    border-color: #7d7d7d;
+}
+#alerttext{
+    color:black !important;
+}
 

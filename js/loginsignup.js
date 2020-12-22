@@ -1,24 +1,26 @@
 function createordestroybutton(){
-    // sessionStorage.removeItem('token')
     if(sessionStorage.getItem('token')!=null){
+        var navmenu=document.getElementById("navmenu");
+        navmenu.removeChild(navmenu.lastChild);
         var btn = document.createElement("button");
         btn.type="button";
         btn.className="btn btn-outline-primary";
         btn.setAttribute("onclick","logout()");
         btn.innerHTML = "Logout";
-        document.getElementById("navmenu").appendChild(btn);
+        navmenu.appendChild(btn);
     }else{
+        var navmenu=document.getElementById("navmenu");
+        navmenu.removeChild(navmenu.lastChild);
         var btn = document.createElement("button");
         btn.type="button";
         btn.className="btn btn-outline-primary";
         btn.setAttribute("data-toggle","modal");
         btn.setAttribute("data-target","#loginpopup");
         btn.innerHTML = "Login";
-        document.getElementById("navmenu").appendChild(btn);
+        navmenu.appendChild(btn);
     }
 
 }
-
 
 function signup() {
     var name = document.getElementById("name").value;
@@ -31,16 +33,15 @@ function signup() {
         if (this.readyState == 4 && this.status == 201) {
             document.getElementsByClassName("alertpopup").innerHTML=this.responseText;
             $('#alertpopup').modal('show');
-            // console.log(this.responseText);
         } else if (this.readyState == 4 && this.status == 409) {
-            console.log("User details provided are invalid ( or User already exits )" + this.responseText);
+            alertpopup('Account Already Exists\nfor this Email','open');
         } else if (this.readyState == 4 && this.status == 500) {
-            console.log("Internal Server Error");
+            alertpopup('Failed to Create Account\nInternal Server Error','open');
         }
     };
-    xhttp.open("POST", "http://104.236.25.178:5000/api/v1/register", true);
+    xhttp.open("POST", "http://104.236.25.178/api/v1/register", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send("{ \"email\": \"" + email + "\", \"name\": \"" + name + "\", \"password\": \"" + password + "\"}");
+    xhttp.send(JSON.stringify({email:email,name:name,password:password}));
 }
 
 function login() {
@@ -49,92 +50,79 @@ function login() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 202) {
-
-            document.getElementById("al").innerHTML="Login Successful";
             sessionStorage.setItem('token',JSON.parse(this.responseText)["token"]);
-
-            $('#alertpopup').modal('show');
+            createordestroybutton();
             $('#loginpopup').modal('hide');
-            location.reload();
         }else if (this.readyState == 4 && this.status == 401) {
-            console.log("Invalid Login Details " + this.responseText);
+            alertpopup('Invalid Email or Password','open');
         }
     };
-    xhttp.open("POST", "http://104.236.25.178:5000/api/v1/login", true);
+    xhttp.open("POST", "http://104.236.25.178/api/v1/login", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send("{ \"email\": \"" + email + "\", \"password\": \"" + password + "\"}");
+    xhttp.send(JSON.stringify({email:email,password:password}));
 }
 
 function getframes() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 201) {
-            document.getElementById("res").innerHTML=this.responseText;
-            var image = new Image();
-            image.src =JSON.parse(this.responseText)["frames"] ;
-            document.getElementById('res').appendChild(image);
-        }else if (this.readyState == 4 && this.status == 401) {
-            console.log(this.responseText);
-        }
-    };
-    xhttp.open("GET", "http://104.236.25.178:5000/api/v1/frames", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.setRequestHeader("Authorization", "Bearer "+sessionStorage.getItem('token'));
-    xhttp.send();
+    var token=sessionStorage.getItem('token');
+    if(token==null){
+        window.open('dashboard.html');
+    }else {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 201) {
+                var arrayofframes=JSON.parse(this.responseText)["frames"]
+                for(var i=0;i<arrayofframes.length;i++){
+                    var image = new Image();
+                    image.style.height="300px";
+                    image.src =arrayofframes[i];
+                    document.getElementById('res').appendChild(image);
+                }
+            } else if (this.readyState == 4 && this.status == 401) {
+                alertpopup(this.responseText,'open');
+            }
+        };
+
+        xhttp.open("GET", "http://104.236.25.178/api/v1/frames", true);
+        xhttp.setRequestHeader("Accept", "application/json");
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.setRequestHeader("Authorization", `Bearer ${sessionStorage.getItem('token')}`);
+        xhttp.send();
+    }
 }
 
+function saveframe(){
+    var token=sessionStorage.getItem('token');
+    if(token==null){
+        $('#loginpopup').modal('show');
+    }else{
+        var dataurl=canvas.toDataURL("image/png;base64");
+        var xhr = new XMLHttpRequest();
 
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                alertpopup('Added Successfully','open');
+            }else if(this.readyState == 4 && this.status == 401){
+                alertpopup('Error While Saving\nLogin Again','open');
+            }
+        };
+        xhr.open("POST", "http://104.236.25.178/api/v1/frames");
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.getItem("token")}`);
+        xhr.send(JSON.stringify({frame: dataurl}));
+    }
 
+}
 
 function logout(){
     sessionStorage.removeItem('token');
-    location.reload();
+    createordestroybutton();
 }
-
-
-
-
-function saveframe(){
-    var dataurl=canvas.toDataURL("image/png;base64");
-    var xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log(xhr.responseText);
-        }else if(this.readyState == 4 && this.status == 401){
-            console.log(xhr.responseText);
-        }
-    };
-    xhr.open("POST", "http://104.236.25.178:5000/api/v1/frames");
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.getItem("token")}`);
-    xhr.send("{ \"frame\": \"" + dataurl + "\"");
-
+function alertpopup(text,par) {
+    document.getElementById('alerttext').innerHTML=text;
+    if(par=='open'){
+        $('#alertpopup').modal('show');
+    }else{
+        $('#alertpopup').modal('hide');
+    }
 }
-
-
-// let saveframe = (ev) => {
-//     var dataurl=canvas.toDataURL("image/png;base64");
-//     let url = 'http://127.0.0.1:5000/api/v1/frames';
-//     // let url = 'http://104.236.25.178:5000/api/v1/frames';
-//     let h = new Headers();
-//     h.append("Authorization", `Bearer ${sessionStorage.getItem('token')}`);
-//     let req = new Request(url, {
-//         method: 'POST',
-//         mode: 'cors',
-//         headers: h,
-//         contentType:"application/json",
-//         dataType:"json",
-//         data:{"frame":dataurl}
-//     });
-//     fetch(req)
-//         .then(resp => resp.json())
-//         .then(data => {
-//             console.log(data);
-//         })
-//         .catch(err => {
-//             console.error(err.message);
-//         })
-// }
-//
-//

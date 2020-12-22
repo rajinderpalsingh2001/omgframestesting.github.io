@@ -8,14 +8,6 @@
           rel="stylesheet"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styleindex.css">
     <style>
         /* width */
@@ -62,11 +54,8 @@
 
     <div class="collapse navbar-collapse text-center" id="navmenu">
         <ul class="navbar-nav mr-auto">
-            <!--            <li class="nav-item active">-->
-            <!--                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>-->
-            <!--            </li>-->
+
         </ul>
-        <div class="dropdown-divider"></div>
         <div class="centeraccording">
             <label class="switch">
                 <input type="checkbox" checked onchange="lightdark(this);" id="lightdarkbtn">
@@ -75,9 +64,6 @@
             </label>
         </div>
         <div class="dropdown-divider"></div>
-<!--        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#loginpopup">-->
-<!--            Login-->
-<!--        </button>-->
 
     </div>
 
@@ -93,12 +79,12 @@
 
                 <div class="text-center row">
                     <div class="col-6">
-                        <button type="button" onclick="window.open('dashboard.html')" class="btn btn-primary"
+                        <button type="button" onclick="window.open('dashboard.html','_self')" class="btn btn-primary"
                                 style="width: 150px;">View Dashboard
                         </button>
                     </div>
                     <div class="col-6">
-                        <button class="btn btn-outline-primary" style="width: 150px">View Gallery</button>
+                        <button type="button" onclick="opengallery();" class="btn btn-outline-primary" style="width: 150px">View Gallery</button>
                     </div>
 
                 </div>
@@ -130,7 +116,6 @@
     </div>
 </div>
 
-
 <!-- Login Modal -->
 <div class="modal fade" id="loginpopup" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -142,15 +127,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="E-mail" id="email" value="helloworld@gmail.com">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" id="password" value="hello1234">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-block btn-primary" type="button" onclick="login();">SIGN IN</button>
-                </div>
+                <form action="javascript:login()" id="loginform">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="E-mail" id="email" value="helloworld@gmail.com" data-rule-required="true" data-msg-required="Enter Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" id="password" value="hello1234" data-rule-required="true" data-msg-required="Enter Password" minlength="6" data-msg-number="Please enter at least 6 characters">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-block btn-primary" type="submit">SIGN IN</button>
+                    </div>
+                </form>
+
                 <div class="form-group text-center">
                     <span class="infosmall">Forgot <a href="#">Email/Password</a>?</span>
                 </div>
@@ -177,18 +165,24 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Name" id="name">
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="E-mail" id="emailnew">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" id="passwordnew">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-block btn-primary" type="button" onclick="signup();">SIGN UP</button>
-                </div>
+                <form action="javascript:signup();" id="signupform">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name" id="name" data-rule-required="true" data-msg-required="Please Enter Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="E-mail" id="emailnew" data-rule-required="true" data-msg-required="Please Enter Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" id="passwordnew" data-rule-required="true" data-msg-required="Enter Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Confirm Password" data-rule-required="true" data-msg-required="Confirm Your Password" data-rule-equalto="#passwordnew">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-block btn-primary" type="submit">SIGN UP</button>
+                    </div>
+                </form>
+
                 <div class="form-group text-center">
                     <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#loginpopup"
                             onclick="$('#signuppopup').modal('hide')">
@@ -203,13 +197,29 @@
 
 <div class="modal fade" id="alertpopup" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: auto">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-body alertpopup" id="al">
-            tes
+        <div class="modal-content">
+            <div class="modal-body alertpopup" id="alerttext">
+            </div>
         </div>
+
     </div>
 </div>
 
 
+<!----------------script files------------------------->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="js/loginsignup.js"></script>
+<script src="js/main.js"></script>
+
+<!--lightdark-->
 <script>
     function lightdark(dom) {
         var link = document.createElement('link');
@@ -253,7 +263,16 @@
         createordestroybutton();
     }
 </script>
-<script src="js/loginsignup.js"></script>
-<script src="js/main.js"></script>
+<!--lightdark-->
+
+<!--formvalidate-->
+<script>
+    $(document).ready(function () {
+        $('#signupform').validate();
+        $('#loginform').validate();
+    })
+</script>
+<!--formvalidate-->
+
 </body>
 </html>
