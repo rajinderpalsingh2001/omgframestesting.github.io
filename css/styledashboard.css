@@ -1,28 +1,33 @@
-body{
-    font-family:"Google Sans", sans-serif;
+body {
+    font-family: "Google Sans", sans-serif;
     background: #f8f9fa;
 }
 
-.btn-primary{
+.btn-primary {
     background: #0046ff;
     border-color: #0046ff;
 }
-.btn-primary:hover{
+
+.btn-primary:hover {
     border-color: #0046ff;
     background: #007bff;
 }
-.btn-outline-primary{
+
+.btn-outline-primary {
     color: #0046ff;
     border-color: #0046ff;
 }
-.btn-outline-primary:hover{
+
+.btn-outline-primary:hover {
     color: white;
     border-color: #0046ff;
     background: #0046ff;
 }
-.col-4{
+
+.col-4 {
     padding: 10px;
 }
+
 canvas {
     z-index: 10;
     width: 280px;
@@ -45,6 +50,7 @@ canvas {
 .addborderbottom {
     border-bottom: 1px solid #bdbdbd;
 }
+
 .addborderright {
     border-right: 1px solid #bdbdbd;
 }
@@ -65,8 +71,9 @@ canvas {
     cursor: pointer;
     transition: background-color 100ms ease;
 }
+
 .select-container .select:hover {
-    color:#0046ff;
+    color: #0046ff;
     transition: background-color 100ms ease;
 }
 
@@ -89,12 +96,14 @@ canvas {
     /*font-weight: bold;*/
     font-size: 10px;
 }
+
 .frameselectimage {
-    height:80px;
+    height: 80px;
     /*padding: 4px;*/
 }
+
 .someicons {
-    height:60px;
+    height: 60px;
     padding: 15px;
     /*filter: invert(38%) sepia(100%) saturate(7486%) hue-rotate(226deg) brightness(99%) contrast(112%); !*blue color for icons*!*/
     border-radius: 10px;
@@ -106,17 +115,20 @@ canvas {
     border-radius: 10px;
     background: #e1e5f3;
 }
-.closeicon{
+
+.closeicon {
     position: relative;
     z-index: 2000;
     cursor: pointer;
 }
+
 .switch {
     position: relative;
     display: inline-block;
     width: 35px;
     height: 18px;
 }
+
 .switch input {
     opacity: 0;
     width: 0;
@@ -160,9 +172,29 @@ input:checked + .slider:before {
     -ms-transform: translateX(26px);
     transform: translateX(18px);
 }
+
 .slider.round {
     border-radius: 34px;
 }
+
 .slider.round:before {
     border-radius: 50%;
+}
+
+.alertpopup {
+    background: #f8f9fa;
+    border-radius: 10px;
+    color: black;
+}
+
+@media (min-width: 768px) {
+    .centeraccording {
+        padding-right: 20px;
+        padding-top: 5px;
+    }
+}
+@media (max-width: 768px) {
+    .dropdown-divider{
+        margin: 0.5rem 130px;
+    }
 }

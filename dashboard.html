@@ -224,13 +224,13 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top addborderbottom">
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top addborderbottom">
     <div onclick="window.open('index.html');" style="cursor:pointer;"><img class="navbar-brand" style="height:45px;padding-right:5px;" src="images/omglogo.png" alt="omglogo"></div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu" aria-controls="navmenu"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navmenu">
+    <div class="collapse navbar-collapse text-center" id="navmenu">
         <ul class="navbar-nav mr-auto">
             <!--            <li class="nav-item active">-->
             <!--                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>-->
@@ -245,7 +245,7 @@
             </div>
         </div>
         <div class="dropdown-divider"></div>
-        <div style="padding-right: 20px;padding-top: 5px;">
+        <div class="centeraccording">
             <label class="switch">
                 <input type="checkbox" checked onchange="lightdark(this);" id="lightdarkbtn">
                 <span class="slider round"></span>
@@ -253,7 +253,6 @@
             </label>
         </div>
         <div class="dropdown-divider"></div>
-        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#loginpopup">Login</button>
     </div>
 
 
@@ -296,7 +295,7 @@
                 </span>
             </a>
         </li>
-        <li onclick="addselected(this.id)" id="uploadselectoroption">
+        <li onclick="addselected(this.id);saveframe();" id="uploadselectoroption">
             <a>
                 <img src="svglogos/upload.svg" alt="upload">
                 <span class="nav-text">
@@ -411,7 +410,7 @@
         <div class="col-md-11" id="perview">
             <div class="text-center">
                 <span onclick="fullscreen('o');openclosecontentinmiddle('editingimage');"><img src="svglogos/edit-button.svg" alt="edit" style="height: 20px;"></span>
-                <img src="svglogos/delete.svg" alt="delete" style="height: 20px;">
+                <span onclick="getframes();"><img src="svglogos/delete.svg" alt="delete" style="height: 20px;"></span>
 
             </div>
             <div class="text-center" style="padding-top:5vh;">
@@ -450,19 +449,20 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="E-mail">
+                    <input type="email" class="form-control" placeholder="E-mail" id="email" value="helloworld@gmail.com">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password" id="password" value="hello1234">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-block btn-primary" type="button">SIGN IN</button>
+                    <button class="btn btn-block btn-primary" type="button" onclick="login();">SIGN IN</button>
                 </div>
                 <div class="form-group text-center">
-                    <span style="color:grey;">Forgot <a href="#">Email/Password</a>?</span>
+                    <span class="infosmall">Forgot <a href="#">Email/Password</a>?</span>
                 </div>
                 <div class="form-group text-center">
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#signuppopup" onclick="$('#loginpopup').modal('hide')">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#signuppopup"
+                            onclick="$('#loginpopup').modal('hide')">
                         Create an Account
                     </button>
                 </div>
@@ -484,29 +484,20 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Name">
+                    <input type="text" class="form-control" placeholder="Name" id="name">
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="E-mail">
+                    <input type="email" class="form-control" placeholder="E-mail" id="emailnew">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password" id="passwordnew">
                 </div>
                 <div class="form-group">
-                    Account Type
-                    <select class="btn btn-primary">
-                        <option value="Organizer">Organizer</option>
-                        <option value="User">User</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Organization Name">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-block btn-primary" type="button">SIGN UP</button>
+                    <button class="btn btn-block btn-primary" type="button" onclick="signup();">SIGN UP</button>
                 </div>
                 <div class="form-group text-center">
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#loginpopup" onclick="$('#signuppopup').modal('hide')">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#loginpopup"
+                            onclick="$('#signuppopup').modal('hide')">
                         Already have Account?
                     </button>
                 </div>
@@ -515,6 +506,15 @@
     </div>
 </div>
 <!--Sign Up Modal-->
+
+<div class="modal fade" id="alertpopup" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: auto">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-body alertpopup" id="al">
+            tes
+        </div>
+    </div>
+</div>
+
 <script>
     const canvas = document.querySelector("canvas");
     const ctx = canvas.getContext("2d");
@@ -737,13 +737,58 @@
     const download = () => {
         const a = document.createElement("a");
         const url = canvas.toDataURL("image/png;base64");
+        console.log(url);
         a.download = "badge.png";
         a.href = url;
         a.click();
     };
     draw(who);
 </script>
+<script>
+    function lightdark(dom) {
+        var link = document.createElement('link');
+        var head = document.getElementsByTagName("head");
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/darkdashboard.css';
+        var img = document.querySelector('img[alt="omglogo"]');
+        var labeldl = document.getElementById("darklighttext");
+        if (dom.getAttribute('checked') != "") {
+            localStorage.setItem("theme", "light");
+            head[0].removeChild(head[0].lastChild);
+            dom.setAttribute("checked", "");
+            labeldl.innerText = "Light";
+            img.src = "images/omglogo.png";
+        } else {
+            localStorage.setItem("theme", "dark");
+            img.src = "images/omglogodark.png";
+            labeldl.innerText = "Dark";
+            dom.removeAttribute("checked");
+            head[0].appendChild(link);
+        }
+    }
+
+    window.onload = function () {
+        if (localStorage.getItem("theme") == "dark") {
+            var link = document.createElement('link');
+            var head = document.getElementsByTagName("head");
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/darkdashboard.css';
+            var dom = document.getElementById('lightdarkbtn');
+            var img = document.querySelector('img[alt="omglogo"]');
+            var labeldl = document.getElementById("darklighttext");
+
+            img.src = "images/omglogodark.png";
+            labeldl.innerText = "Dark";
+            dom.removeAttribute("checked");
+            head[0].appendChild(link);
+        }
+        createordestroybutton();
+    }
+</script>
 <script type="text/javascript" src="js/imageedit.js"></script>
+<script src="js/loginsignup.js"></script>
 <script src="js/main.js"></script>
 </body>
 
