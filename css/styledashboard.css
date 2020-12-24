@@ -32,6 +32,8 @@ canvas {
     z-index: 10;
     width: 280px;
     max-width: 80%;
+    border: 1px solid #343a40;
+    background: url('../images/transparent.jpg')
 }
 
 .btn {
@@ -54,39 +56,30 @@ canvas {
 .addborderright {
     border-right: 1px solid #bdbdbd;
 }
-
-.select-container {
-    display: flex;
-    border-radius: 4px;
-    overflow: hidden;
+.selectbtn{
+    height: 39px !important;
+    width: 84px !important;
 }
-
-.select-container .select {
+.select {
     background-color: #f7f7f7;
-    /*padding:6px 12px;*/
     margin: 2px;
+    height: 84px;
+    width: 84px;
     border: 2px solid #909090;
-    /*border-radius: 50px;*/
     font-size: 15px;
     cursor: pointer;
     transition: background-color 100ms ease;
 }
 
-.select-container .select:hover {
-    color: #0046ff;
+.select:hover {
     transition: background-color 100ms ease;
 }
 
-.select-container .select:not(:last-child) {
-    /*border-right: 1px solid #cacaca;*/
-}
-
-.select-container .select[selected] {
+.select[selected] {
     color: white;
     font-weight: bold;
+    border: 2px solid #909090;
     background: #0066cc;
-    /*border-radius: 50px;*/
-
 }
 
 .frameselecttext {
@@ -118,7 +111,7 @@ canvas {
 
 .closeicon {
     position: relative;
-    z-index: 2000;
+    z-index: 1000;
     cursor: pointer;
 }
 

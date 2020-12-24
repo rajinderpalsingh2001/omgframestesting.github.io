@@ -7,10 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link crossorigin="anonymous" href="https://fonts.googleapis.com/icon?family=Google+Sans:400&display=swap"
           rel="stylesheet"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/stylegallery.css">
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
 
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #0046ff;
+            border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0046ff;
+        }
+
+        .hidescroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hidescroll {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+    </style>
 </head>
 <body>
 
@@ -46,13 +77,12 @@
         </div>
         <div class="dropdown-divider"></div>
     </div>
-
-
 </nav>
 <div class="container">
-    <div id="res"></div>
-</div>
+    <div class="row text-center" id="main">
 
+    </div>
+</div>
 
 <!-- Login Modal -->
 <div class="modal fade" id="loginpopup" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false"
@@ -63,7 +93,7 @@
                 <h5 class="modal-title w-100">Account Login</h5>
             </div>
             <div class="modal-body">
-                <form action="javascript:login()" id="loginform">
+                <form action="javascript:login('gallery')" id="loginform">
                     <div class="form-group">
                         <input type="email" class="form-control" placeholder="E-mail" id="email"
                                value="helloworld@gmail.com" data-rule-required="true" data-msg-required="Enter Email">
@@ -158,6 +188,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script src="js/loginsignup.js"></script>
+<script src="js/main.js"></script>
 <!--lightdark-->
 <script>
     function lightdark(dom) {

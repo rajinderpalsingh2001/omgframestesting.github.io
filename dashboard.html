@@ -4,7 +4,8 @@
     <title>Badge Generator - OMG - Developer Student Clubs</title>
     <meta name="description" content="Badge Generator - OMG - Developer Student Clubs"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link crossorigin="anonymous" href="https://fonts.googleapis.com/icon?family=Google+Sans:400&display=swap" rel="stylesheet"/>
+    <link crossorigin="anonymous" href="https://fonts.googleapis.com/icon?family=Google+Sans:400&display=swap"
+          rel="stylesheet"/>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -59,13 +60,16 @@
 
         .main-nav {
             background: #e5e5e5;
-            /*border-right: 1px solid #a3a3a3;*/
             position: fixed;
             z-index: 1000;
         }
 
-        .main-nav li[selected] {
-            border-left: 4px solid #0046ff;
+        .main-nav li[selected] .nav-text {
+            color: #0046ff !important;
+        }
+
+        .main-nav li[selected] img {
+            filter: invert(13%) sepia(74%) saturate(7348%) hue-rotate(229deg) brightness(104%) contrast(103%);
         }
 
         .main-nav > ul {
@@ -82,7 +86,10 @@
         .main-nav li:hover > a,
         nav.main-nav li.active > a {
             font-size: 20px;
-            filter: invert(13%) sepia(74%) saturate(7348%) hue-rotate(229deg) brightness(104%) contrast(103%);
+        }
+
+        .main-nav li:hover img {
+            width: 2.7rem;
         }
 
         .main-nav li > a {
@@ -147,6 +154,7 @@
 
             }
         }
+
         @media (max-width: 768px) {
             /*when there's mobile screen*/
             .container-fluid {
@@ -155,7 +163,6 @@
 
             .main-nav li[selected] {
                 border-left: 0;
-                border-bottom: 4px solid #0046ff;
             }
 
             .main-nav {
@@ -209,15 +216,17 @@
                 white-space: nowrap;
             }
 
-            .main-nav li:hover {
-                border-top: 2px solid #0046ff;
+            .main-nav li:hover img {
+                width: 2.7rem;
             }
         }
     </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top addborderbottom">
-    <div onclick="window.open('index.html');" style="cursor:pointer;"><img class="navbar-brand" style="height:45px;padding-right:5px;" src="images/omglogo.png" alt="omglogo"></div>
+    <div onclick="window.open('index.html');" style="cursor:pointer;"><img class="navbar-brand"
+                                                                           style="height:45px;padding-right:5px;"
+                                                                           src="images/omglogo.png" alt="omglogo"></div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu" aria-controls="navmenu"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -236,7 +245,8 @@
         <div class="text-center">
             <div style="display: inline;padding: 20px;">
                 <div style="display: inline;padding-right: 10px;font-size: 15px;">All Changes Saved</div>
-                <div style="display: inline;padding-right: 10px;"><img style="height: 15px;" src="svglogos/undo.svg" alt="undo"></div>
+                <div style="display: inline;padding-right: 10px;"><img style="height: 15px;" src="svglogos/undo.svg"
+                                                                       alt="undo"></div>
                 <div style="display: inline"><img style="height: 15px;" src="svglogos/redo.svg" alt="redo"></div>
             </div>
         </div>
@@ -265,7 +275,8 @@
             </a>
         </li>
 
-        <li id="frameselectoroption" onclick="fullscreen('o');openclosecontentinmiddle('backgroundandshape');addselected(this.id);">
+        <li id="frameselectoroption"
+            onclick="fullscreen('o');openclosecontentinmiddle('backgroundandshape');addselected(this.id);">
             <a>
                 <img src="svglogos/background.svg" alt="background">
                 <span class="nav-text">
@@ -273,7 +284,8 @@
                 </span>
             </a>
         </li>
-        <li id="eventselectoroption" onclick="fullscreen('o');openclosecontentinmiddle('eventselector');addselected(this.id);">
+        <li id="eventselectoroption"
+            onclick="fullscreen('o');openclosecontentinmiddle('eventselector');addselected(this.id);">
             <a>
                 <img src="svglogos/calendar.svg" alt="events">
                 <span class="nav-text">
@@ -299,7 +311,7 @@
                         </span>
             </a>
         </li>
-<!--        openclosecontentinmiddle('editingimage');-->
+        <!--        openclosecontentinmiddle('editingimage');-->
         <li id="fullscreenselectoroption" onclick="fullscreen('t');addselected(this.id);">
             <a>
                 <img src="svglogos/fullscreen.svg" alt="fullscreen">
@@ -320,31 +332,38 @@
             <!--            background and shape selector-->
             <div class="collapse row" style="overflow-y: auto;" id="backgroundandshape">
                 <div class="col-sm">
-                    <div class="select-container">
-                        <div class="select" id="attendee" selected onclick="setup('attendee')">
-                            <img id="attendeeimage" src="frames/attendee.png" alt="" class="frameselectimage">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="select" id="attendee" selected onclick="setup('attendee')">
+                                <img id="attendeeimage" src="frames/attendee.png" alt="" class="frameselectimage">
+                            </div>
                         </div>
-                        <div class="select" id="speaker" onclick="setup('speaker')">
-                            <img id="speakerimage" src="frames/speaker.png" alt="" class="frameselectimage">
+                        <div class="col-4">
+                            <div class="select" id="speaker" onclick="setup('speaker')">
+                                <img id="speakerimage" src="frames/speaker.png" alt="" class="frameselectimage">
+                            </div>
                         </div>
-                        <div class="select" id="hustler" onclick="setup('hustler')">
-                            <img class="frameselectimage" id="hustlerimage" src="frames/hustler.png" alt="">
+                        <div class="col-4">
+                            <div class="select" id="hustler" onclick="setup('hustler')">
+                                <img class="frameselectimage" id="hustlerimage" src="frames/hustler.png" alt="">
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 <br>
                 <div class="col-sm">
-                    <div class="input">
+                    <div class="row">
                         <label>Background Shape</label>
-                        <div class="select-container">
-                            <div class="btn btn-outline-primary select" id="original" selected
+                        <div>
+                            <div class="btn btn-outline-primary select selectbtn" id="original" selected
                                  onclick="changeShape('original');originalimage()">
                                 Original
                             </div>
-                            <div class="btn btn-outline-primary select" id="square" onclick="changeShape('square')">
+                            <div class="btn btn-outline-primary select selectbtn" id="square" onclick="changeShape('square')">
                                 Square
                             </div>
-                            <div class="btn btn-outline-primary select" id="circle" onclick="changeShape('circle')">
+                            <div class="btn btn-outline-primary select selectbtn" id="circle" onclick="changeShape('circle')">
                                 Circle
                             </div>
                         </div>
@@ -357,16 +376,23 @@
             <div class="collapse row" id="eventselector">
                 <div class="col-sm">
                     You're Coming as
-                    <div class="row select-container">
-                        <div class="btn btn-outline-primary select" selected>
-                            Attendee
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="btn btn-outline-primary select selectbtn" selected>
+                                Attendee
+                            </div>
                         </div>
-                        <div class="btn btn-outline-primary select">
-                            Speaker
+                        <div class="col-4">
+                            <div class="btn btn-outline-primary select selectbtn">
+                                Speaker
+                            </div>
                         </div>
-                        <div class="btn btn-outline-primary select">
-                            Organizer
+                        <div class="col-4">
+                            <div class="btn btn-outline-primary select selectbtn">
+                                Organizer
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -405,16 +431,18 @@
 
         <div class="col-md-11" id="perview">
             <div class="text-center">
-                <span onclick="fullscreen('o');openclosecontentinmiddle('editingimage');"><img src="svglogos/edit-button.svg" alt="edit" style="height: 20px;"></span>
-                <span onclick="getframes();"><img src="svglogos/delete.svg" alt="delete" style="height: 20px;"></span>
-
+                <span onclick="fullscreen('o');openclosecontentinmiddle('editingimage');"><img
+                        src="svglogos/edit-button.svg" alt="edit" style="height: 20px;cursor: pointer;"></span>
+                <span onclick="deleteimg()"><img src="svglogos/delete.svg" alt="delete"
+                                                    style="height: 20px;cursor: pointer;"></span>
             </div>
             <div class="text-center" style="padding-top:5vh;">
-                <canvas style="background: url('images/transparent.jpg')"></canvas>
+                <canvas></canvas>
                 <div class="text-center">
                     <div class="text-center">
                         <div style="padding-right:50px;display: inline;">
-                            <button type="button" onclick="download()" class="btn btn-outline-primary"
+                            <button type="button" onclick="download(canvas.toDataURL('image/png;base64'))"
+                                    class="btn btn-outline-primary"
                                     style="font-weight: bold;width:130px !important;"><i class="fa fa-download"
                                                                                          aria-hidden="true"></i> as PNG
                             </button>
@@ -444,12 +472,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="javascript:login()" id="loginform">
+                <form action="javascript:login('dashboard')" id="loginform">
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="E-mail" id="email" value="helloworld@gmail.com" data-rule-required="true" data-msg-required="Enter Email">
+                        <input type="email" class="form-control" placeholder="E-mail" id="email"
+                               value="helloworld@gmail.com" data-rule-required="true" data-msg-required="Enter Email">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" id="password" value="hello1234" data-rule-required="true" data-msg-required="Enter Password" minlength="6" data-msg-number="Please enter at least 6 characters">
+                        <input type="password" class="form-control" placeholder="Password" id="password"
+                               value="hello1234" data-rule-required="true" data-msg-required="Enter Password"
+                               minlength="6" data-msg-number="Please enter at least 6 characters">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-block btn-primary" type="submit">SIGN IN</button>
@@ -484,16 +515,21 @@
             <div class="modal-body">
                 <form action="javascript:signup();" id="signupform">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Name" id="name" data-rule-required="true" data-msg-required="Please Enter Name">
+                        <input type="text" class="form-control" placeholder="Name" id="name" data-rule-required="true"
+                               data-msg-required="Please Enter Name">
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="E-mail" id="emailnew" data-rule-required="true" data-msg-required="Please Enter Email">
+                        <input type="email" class="form-control" placeholder="E-mail" id="emailnew"
+                               data-rule-required="true" data-msg-required="Please Enter Email">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" id="passwordnew" data-rule-required="true" data-msg-required="Enter Password">
+                        <input type="password" class="form-control" placeholder="Password" id="passwordnew"
+                               data-rule-required="true" data-msg-required="Enter Password">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Confirm Password" data-rule-required="true" data-msg-required="Confirm Your Password" data-rule-equalto="#passwordnew">
+                        <input type="password" class="form-control" placeholder="Confirm Password"
+                               data-rule-required="true" data-msg-required="Confirm Your Password"
+                               data-rule-equalto="#passwordnew">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-block btn-primary" type="submit">SIGN UP</button>
@@ -522,7 +558,6 @@
     </div>
 </div>
 
-
 <!----------------script files------------------------->
 <script>
     const canvas = document.querySelector("canvas");
@@ -535,13 +570,13 @@
     var tempsrc;
     const setup = (type) => {
         const attendee = document.querySelector(
-            ".select-container .select#attendee"
+            ".select#attendee"
         );
         const speaker = document.querySelector(
-            ".select-container .select#speaker"
+            ".select#speaker"
         );
         const hustler = document.querySelector(
-            ".select-container .select#hustler"
+            ".select#hustler"
         );
         who = type;
         switch (type) {
@@ -573,19 +608,19 @@
 
     const changeShape = (type) => {
         const attendee = document.querySelector(
-            ".select-container .select#attendee"
+            " .select#attendee"
         );
         const speaker = document.querySelector(
-            ".select-container .select#speaker"
+            ".select#speaker"
         );
         const hustler = document.querySelector(
-            ".select-container .select#hustler"
+            ".select#hustler"
         );
         const original = document.querySelector(
-            ".select-container .select#original"
+            ".select#original"
         );
-        const square = document.querySelector(".select-container .select#square");
-        const circle = document.querySelector(".select-container .select#circle");
+        const square = document.querySelector(" .select#square");
+        const circle = document.querySelector(" .select#circle");
         shape = type;
         switch (type) {
             case "original": {
@@ -697,12 +732,6 @@
             } else {
                 ctx.canvas.width = 500;
                 ctx.canvas.height = 500;
-                // var background = new Image();
-                // ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-                // ctx.fillStyle = "#efefef";
-                // ctx.strokeRect(0, 0, canvas.width, canvas.height);
-                // ctx.fillStyle = "#0d47a1";
-                // ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
 
             const height = (banner.height / banner.width) * canvas.width;
@@ -718,14 +747,13 @@
                 0,
                 y,
                 canvas.width,
-                height
+                canvas.height
             );
 
             ctx.fillStyle = "#757575";
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
             ctx.font = `${fontSize}px Google Sans, sans-serif`;
-            // ctx.fillText(category, canvas.width / 2, fontY)
 
             if (shape === "circle") {
                 ctx.globalCompositeOperation = "destination-in";
@@ -741,15 +769,6 @@
                 ctx.fill();
             }
         };
-    };
-
-    const download = () => {
-        const a = document.createElement("a");
-        const url = canvas.toDataURL("image/png;base64");
-        console.log(url);
-        a.download = "badge.png";
-        a.href = url;
-        a.click();
     };
     draw(who);
 </script>
@@ -795,7 +814,7 @@
             dom.removeAttribute("checked");
             head[0].appendChild(link);
         }
-        createordestroybutton();
+        createordestroybutton('dashboard');
     }
 </script>
 <!--lightdark-->

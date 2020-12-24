@@ -9,10 +9,6 @@
 .main-nav img{
     filter: invert(100%);
 }
-.main-nav li:hover > a,
-nav.main-nav li.active > a {
-    filter:invert(45%) sepia(234%) saturate(7349%) hue-rotate(229deg) brightness(120%) contrast(205%);
-}
 .close{
     color: #f8f9fa;
 }
@@ -25,12 +21,18 @@ nav.main-nav li.active > a {
 .addborderright {
     border-right: 1px solid #7d7d7d;
 }
-.nav-text,a,span,div,p{
+a,span,div,p{
     color:#f8f9fa !important ;
+}
+.nav-text{
+    color: #f8f9fa;
 }
 .btn-outline-primary{
     color:#f8f9fa;
     border-color: #f8f9fa;
+}
+.select:hover{
+    color:#f8f9fa !important;
 }
 .select{
     color: #0046ff !important;
@@ -54,4 +56,6 @@ img[alt="delete"],img[alt="edit"],img[alt="undo"],img[alt="redo"],img[alt="darkm
 #alerttext{
     color:black !important;
 }
-
+canvas{
+    border: 1px solid #f8f9fa !important;
+}

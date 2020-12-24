@@ -74,4 +74,16 @@ function opengallery(){
         window.open('gallery.html','_parent');
     }
 }
+function download(url) {
+    const a = document.createElement("a");
+    var filename=prompt("Please Enter Filename", "badge");
+    if(filename!=null){
+        a.download = filename;
+        a.href = url;
+        a.click();
+    }
 
+}
+function deleteimg() {
+    // document.querySelector("input.profile-input").value='';
+}

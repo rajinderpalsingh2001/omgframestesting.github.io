@@ -86,7 +86,6 @@
                     <div class="col-6">
                         <button type="button" onclick="opengallery();" class="btn btn-outline-primary" style="width: 150px">View Gallery</button>
                     </div>
-
                 </div>
             </div>
 
@@ -127,7 +126,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="javascript:login()" id="loginform">
+                <form action="javascript:login('index')" id="loginform">
                     <div class="form-group">
                         <input type="email" class="form-control" placeholder="E-mail" id="email" value="helloworld@gmail.com" data-rule-required="true" data-msg-required="Enter Email">
                     </div>
@@ -260,7 +259,7 @@
             dom.removeAttribute("checked");
             head[0].appendChild(link);
         }
-        createordestroybutton();
+        createordestroybutton('index');
     }
 </script>
 <!--lightdark-->

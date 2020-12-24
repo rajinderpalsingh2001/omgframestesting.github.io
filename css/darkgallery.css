@@ -43,3 +43,6 @@ a,div,p{
     background: #343a40;
     border-radius: 10px;
 }
+.iconsimagehover {
+    filter: invert(100%);
+}
