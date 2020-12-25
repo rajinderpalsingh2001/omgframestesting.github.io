@@ -84,6 +84,60 @@ function download(url) {
     }
 
 }
+var img;
 function deleteimg() {
     // document.querySelector("input.profile-input").value='';
+    img=new Image();
+    img.crossOrigin='anonymous';
+    img.src=canvas.toDataURL('image/png;base64');
+    start()
+}
+function start(){
+    var w=prompt("Enter Scale Factor",2);
+    resizeImg(img,w);
+}
+function resizeImg(img,scaleFactor){
+    var c=document.createElement('canvas');
+    var ctx=c.getContext('2d');
+    var iw=img.width;
+    var ih=img.height;
+    c.width=iw*scaleFactor;
+    console.log("Width "+c.width)
+    c.height=ih*scaleFactor;
+    console.log("Height "+c.height)
+    ctx.drawImage(img,0,0,iw*scaleFactor,ih*scaleFactor);
+    var scaledImg=new Image();
+    scaledImg.onload=function(){
+        // scaledImg is a scaled imageObject for upload/download
+        download(c.toDataURL('image/png;base64'));
+    }
+    scaledImg.src=c.toDataURL();
+}
+function loader(action){
+    switch (action) {
+        case 'show':
+            var body = document.getElementsByTagName("body");
+            var div=document.createElement("div");
+            div.id="loader";
+            div.style.cssText="position: fixed;\n" +
+                "            z-index:5000;\n" +
+                "            width: 100%;\n" +
+                "            height: 100%;\n" +
+                "            background: rgba(4,4,4,0.8);";
+            div.className="loader";
+            div.innerHTML='<div style="margin:auto;\n' +
+                '            position: absolute;\n' +
+                '            top:46%;\n' +
+                '            left:46%;">\n' +
+                '        <div style="height:3rem;\n' +
+                '            width: 3rem;" class="spinner-border text-light" role="status"></div>\n' +
+                '    </div>'
+            body[0].prepend(div);
+            break;
+        case 'hide':
+            var body = document.getElementsByTagName("body");
+            body[0].removeChild(document.getElementById('loader'));
+            break;
+    }
+
 }

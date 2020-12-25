@@ -46,3 +46,6 @@ a,div,p{
 .iconsimagehover {
     filter: invert(100%);
 }
+img[alt="add"]{
+    filter:invert(100%);
+}

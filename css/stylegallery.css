@@ -222,4 +222,9 @@ input:checked + .slider:before {
     opacity: 1;
     transition: .4s;
 }
-
+img[alt="add"]{
+    filter:invert(45%) sepia(234%) saturate(7349%) hue-rotate(229deg) brightness(120%) contrast(205%);
+}
+.btn-outline-primary:hover img[alt="add"]{
+    filter:invert(100%);
+}

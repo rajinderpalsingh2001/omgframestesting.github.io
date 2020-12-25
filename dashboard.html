@@ -209,13 +209,19 @@
                 width: 4rem;
                 height: 10px;
                 font-size: 3.2vmin;
-                white-space: nowrap;
+                white-space:     nowrap;
             }
             
         }
     </style>
 </head>
 <body>
+<!--<div class="loader">-->
+<!--    <div class="centerit">-->
+<!--        <div class="spinner-border text-light" role="status"></div>-->
+<!--    </div>-->
+
+<!--</div>-->
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top addborderbottom">
     <div onclick="window.open('index.html');" style="cursor:pointer;"><img class="navbar-brand"
                                                                            style="height:45px;padding-right:5px;"
@@ -315,7 +321,6 @@
         </li>
     </ul>
 </nav>
-
 <div style="padding-top:15px;" class="container-fluid">
     <div class="row">
         <div class="col-md-1">
@@ -468,11 +473,11 @@
                 <form action="javascript:login('dashboard')" id="loginform">
                     <div class="form-group">
                         <input type="email" class="form-control" placeholder="E-mail" id="email"
-                               value="helloworld@gmail.com" data-rule-required="true" data-msg-required="Enter Email">
+                             data-rule-required="true" data-msg-required="Enter Email">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" placeholder="Password" id="password"
-                               value="hello1234" data-rule-required="true" data-msg-required="Enter Password"
+                                data-rule-required="true" data-msg-required="Enter Password"
                                minlength="6" data-msg-number="Please enter at least 6 characters">
                     </div>
                     <div class="form-group">
