@@ -46,7 +46,7 @@
 <body>
 
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top addborderbottom">
-    <div><img class="navbar-brand" style="height:45px;padding-right:5px;" src="images/omglogo.png" alt="omglogo"></div>
+    <div onclick="window.open('dashboard.html','_self')"><img class="navbar-brand" style="height:45px;padding-right:5px;" src="images/omglogo.png" alt="omglogo"></div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu" aria-controls="navmenu"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -127,10 +127,10 @@
             <div class="modal-body">
                 <form action="javascript:login('index')" id="loginform">
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="E-mail" id="email" value="helloworld@gmail.com" data-rule-required="true" data-msg-required="Enter Email">
+                        <input type="email" class="form-control" placeholder="E-mail" id="email" data-rule-required="true" data-msg-required="Enter Email">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" id="password" value="hello1234" data-rule-required="true" data-msg-required="Enter Password" minlength="6" data-msg-number="Please enter at least 6 characters">
+                        <input type="password" class="form-control" placeholder="Password" id="password" data-rule-required="true" data-msg-required="Enter Password" minlength="6" data-msg-number="Please enter at least 6 characters">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-block btn-primary" type="submit">SIGN IN</button>

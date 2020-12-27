@@ -46,6 +46,9 @@ function signup() {
         } else if (this.readyState == 4 && this.status == 500) {
             loader('hide');
             alertpopup('Failed to Create Account\nInternal Server Error', 'open');
+        }else{
+            loader('hide');
+            alertpopup(this.responseText, 'open');
         }
     };
     xhttp.open("POST", "https://api.iwasat.events/api/v1/register", true);
@@ -68,7 +71,7 @@ function login(win) {
             }
             $('#loginpopup').modal('hide');
 
-        } else if (this.readyState == 4 && this.status == 401) {
+        }else if (this.readyState == 4 && this.status == 401) {
             loader('hide');
             alertpopup('Invalid Email or Password', 'open');
         }
@@ -152,7 +155,10 @@ function saveframe() {
             if (this.readyState == 4 && this.status == 201) {
                 loader('hide');
                 alertpopup('Added Successfully', 'open');
-            } else if (this.readyState == 4 && this.status == 401) {
+            } else if (this.readyState == 4 && this.status == 400) {
+                loader('hide');
+                alertpopup('Error While Saving\nTry Again', 'open');
+            }else if(this.readyState == 4 && this.status == 401){
                 loader('hide');
                 alertpopup('Error While Saving\nLogin Again', 'open');
             }

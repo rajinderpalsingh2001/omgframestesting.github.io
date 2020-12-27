@@ -216,38 +216,29 @@
     </style>
 </head>
 <body>
-<!--<div class="loader">-->
-<!--    <div class="centerit">-->
-<!--        <div class="spinner-border text-light" role="status"></div>-->
-<!--    </div>-->
-
-<!--</div>-->
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top addborderbottom">
-    <div onclick="window.open('index.html');" style="cursor:pointer;"><img class="navbar-brand"
-                                                                           style="height:45px;padding-right:5px;"
-                                                                           src="images/omglogo.png" alt="omglogo"></div>
+    <div onclick="window.open('index.html','_self');" style="cursor:pointer;"><img class="navbar-brand"
+                                                                           style="height:45px;padding-right:5px;" src="images/omglogo.png" alt="omglogo"></div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu" aria-controls="navmenu"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse text-center" id="navmenu">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html" target="_self">Home</a>
-            </li>
-            <div class="dropdown-divider"></div>
-            <li class="nav-item active" onclick="opengallery();">
-                <span class="nav-link">Gallery</span>
-            </li>
         </ul>
         <div class="dropdown-divider"></div>
         <div class="text-center">
-            <div style="display: inline;padding: 20px;">
+            <div style="display: inline;">
                 <div style="display: inline;padding-right: 10px;font-size: 15px;">All Changes Saved</div>
                 <div style="display: inline;padding-right: 10px;"><img style="height: 15px;" src="svglogos/undo.svg"
                                                                        alt="undo"></div>
                 <div style="display: inline"><img style="height: 15px;" src="svglogos/redo.svg" alt="redo"></div>
             </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="text-center" onclick="opengallery();" style="padding-right: 10px;padding-left: 10px;cursor: pointer;">
+            <img class="nav-link" src="svglogos/gallery.svg" alt="gallery" style="height:40px;margin: auto;">
+            Gallery
         </div>
         <div class="dropdown-divider"></div>
         <div class="centeraccording">
@@ -471,11 +462,11 @@
                 <form action="javascript:login('dashboard')" id="loginform">
                     <div class="form-group">
                         <input type="email" class="form-control" placeholder="E-mail" id="email"
-                               value="helloworld@gmail.com" data-rule-required="true" data-msg-required="Enter Email">
+                               data-rule-required="true" data-msg-required="Enter Email">
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control" placeholder="Password" id="password"
-                               value="hello1234" data-rule-required="true" data-msg-required="Enter Password"
+                                data-rule-required="true" data-msg-required="Enter Password"
                                minlength="6" data-msg-number="Please enter at least 6 characters">
                     </div>
                     <div class="form-group">

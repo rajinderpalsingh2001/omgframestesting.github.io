@@ -40,7 +40,7 @@ a,span,div,p{
 .select[selected]{
     color: #f8f9fa !important;
 }
-img[alt="delete"],img[alt="edit"],img[alt="undo"],img[alt="redo"],img[alt="darkmode"]{
+img[alt="delete"],img[alt="edit"],img[alt="undo"],img[alt="redo"],img[alt="darkmode"],img[alt="gallery"]{
     filter:invert(100%);
 }
 .navbar-toggler{

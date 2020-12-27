@@ -47,6 +47,6 @@ a,div,p{
 .iconsimagehover {
     filter: invert(100%);
 }
-img[alt="add"]{
+img[alt="add"],img[alt="gallery"]{
     filter:invert(100%);
 }
