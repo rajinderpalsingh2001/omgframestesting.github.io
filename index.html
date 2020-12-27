@@ -64,7 +64,6 @@
             </label>
         </div>
         <div class="dropdown-divider"></div>
-
     </div>
 
 </nav>
@@ -128,10 +127,10 @@
             <div class="modal-body">
                 <form action="javascript:login('index')" id="loginform">
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="E-mail" id="email" data-rule-required="true" data-msg-required="Enter Email">
+                        <input type="email" class="form-control" placeholder="E-mail" id="email" value="helloworld@gmail.com" data-rule-required="true" data-msg-required="Enter Email">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" id="password" data-rule-required="true" data-msg-required="Enter Password" minlength="6" data-msg-number="Please enter at least 6 characters">
+                        <input type="password" class="form-control" placeholder="Password" id="password" value="hello1234" data-rule-required="true" data-msg-required="Enter Password" minlength="6" data-msg-number="Please enter at least 6 characters">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-block btn-primary" type="submit">SIGN IN</button>
@@ -172,6 +171,12 @@
                         <input type="email" class="form-control" placeholder="E-mail" id="emailnew" data-rule-required="true" data-msg-required="Please Enter Email">
                     </div>
                     <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Organization Name" id="organization" data-rule-required="true" data-msg-required="Enter Oranization Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Role" id="role" data-rule-required="true" data-msg-required="Enter Role">
+                    </div>
+                    <div class="form-group">
                         <input type="password" class="form-control" placeholder="Password" id="passwordnew" data-rule-required="true" data-msg-required="Enter Password">
                     </div>
                     <div class="form-group">
@@ -196,8 +201,8 @@
 
 <div class="modal fade" id="alertpopup" tabindex="-1" role="dialog" aria-hidden="true" style="overflow-y: auto">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body alertpopup" id="alerttext">
+        <div class="modal-content" style="border-radius: 10px;">
+            <div class="modal-body alertpopup text-center" id="alerttext">
             </div>
         </div>
 

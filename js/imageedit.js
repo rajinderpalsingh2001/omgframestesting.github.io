@@ -19,7 +19,7 @@ function showcroppedresult() {
         $image_crop.croppie('result', {
             type: 'base64',
             format: 'png',
-            size: 'original',
+            size:'original',
             quality:1
         }).then(function (response) {
             image.src = response;

@@ -1,14 +1,11 @@
 function createordestroybutton(win) {
-    switch (win) {
-        case 'index':
-        case 'dashboard':
             if (sessionStorage.getItem('token') != null) {
                 var navmenu = document.getElementById("navmenu");
                 navmenu.removeChild(navmenu.lastChild);
                 var btn = document.createElement("button");
                 btn.type = "button";
                 btn.className = "btn btn-outline-primary";
-                btn.setAttribute("onclick", "logout()");
+                btn.setAttribute("onclick", "logout(\'"+win+"'\)");
                 btn.innerHTML = "Logout";
                 navmenu.appendChild(btn);
             } else {
@@ -22,38 +19,28 @@ function createordestroybutton(win) {
                 btn.innerHTML = "Login";
                 navmenu.appendChild(btn);
             }
-            break;
-        case 'gallery':
-            getframes();
-            break;
-        default:
-
-            break;
-
-    }
-
-
 }
 
 function signup() {
     var name = document.getElementById("name").value;
     var email = document.getElementById("emailnew").value;
     var password = document.getElementById("passwordnew").value;
+    var organization = document.getElementById('organization').value;
+    var role = document.getElementById('role').value;
     loader('show');
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 201) {
             loader('hide');
-            alertpopup('Account Created Successfully!','open');
+            alertpopup('Account Created Successfully!', 'open');
             setTimeout(function () {
                 $('#signupform').modal('hide');
-                alertpopup('','hide')
+                alertpopup('', 'hide')
                 $('#loginpopup').modal('show');
-                document.getElementById('email').value=email;
-                document.getElementById('password').value='';
-            },2000);
+                document.getElementById('email').value = email;
+                document.getElementById('password').value = '';
+            }, 2000);
         } else if (this.readyState == 4 && this.status == 409) {
-            console.log(this.responseText);
             loader('hide');
             alertpopup('Account Already Exists\nfor this Email', 'open');
         } else if (this.readyState == 4 && this.status == 500) {
@@ -61,9 +48,9 @@ function signup() {
             alertpopup('Failed to Create Account\nInternal Server Error', 'open');
         }
     };
-    xhttp.open("POST", "http://104.236.25.178/api/v1/register", true);
+    xhttp.open("POST", "https://api.iwasat.events/api/v1/register", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify({email: email, name: name, password: password}));
+    xhttp.send(JSON.stringify({email: email, name: name, organisation: organization, password: password, role: role}));
 }
 
 function login(win) {
@@ -76,6 +63,9 @@ function login(win) {
             loader('hide');
             sessionStorage.setItem('token', JSON.parse(this.responseText)["token"]);
             createordestroybutton(win);
+            if(win=='gallery'){
+                getframes();
+            }
             $('#loginpopup').modal('hide');
 
         } else if (this.readyState == 4 && this.status == 401) {
@@ -83,9 +73,24 @@ function login(win) {
             alertpopup('Invalid Email or Password', 'open');
         }
     };
-    xhttp.open("POST", "http://104.236.25.178/api/v1/login", true);
+    xhttp.open("POST", "https://api.iwasat.events/api/v1/login", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(JSON.stringify({email: email, password: password}));
+}
+
+function deleteframe(frameid) {
+    loader('show');
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 201) {
+            loader('hide');
+            getframes();
+        }
+    };
+    xhttp.open("DELETE", "https://api.iwasat.events/api/v1/frames?id=" + frameid, true);
+    xhttp.setRequestHeader("Accept", "application/json");
+    xhttp.setRequestHeader("Authorization", `Bearer ${sessionStorage.getItem('token')}`);
+    xhttp.send();
 }
 
 function getframes() {
@@ -98,23 +103,22 @@ function getframes() {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 201) {
                 var arrayofframes = JSON.parse(this.responseText)["frames"];
-                if(arrayofframes.length===0){
-                    console.log("called")
-                    var temp='<div class="text-center">\n' +
+                if (arrayofframes.length === 0) {
+                    var temp = '<div class="text-center">\n' +
                         '        <div>It Seems No Saved Frames Yet!</div>\n' +
                         '        <span class="btn btn-outline-primary" onclick="window.open(\'dashboard.html\',\'_self\')"><img src="svglogos/add.svg" style="height: 20px;padding-right: 10px;padding-bottom: 3px;" alt="add">New Badge</span>\n' +
                         '    </div>';
-                    document.querySelector(".container").innerHTML=temp;
-                }else{
+                    document.querySelector(".container").innerHTML = temp;
+                } else {
                     var temp = "";
                     for (var i = 0; i < arrayofframes.length; i++) {
                         temp += '<div class="col-sm-4">'
-                        temp += '<img class="displayframeimage" src="' + arrayofframes[i] + '">'
+                        temp += '<img class="displayframeimage" src="' + arrayofframes[i]["frame_data"] + '">'
                         temp += '<div class="overlay">'
                         temp += '<div class="text">' +
                             '<ul class="list">' +
-                            '<li onclick="download(\'' + arrayofframes[i] + '\')"><span><img src="svglogos/download.svg" class="iconsimagehover">Download</span></li>' +
-                            '<li><span><img src="svglogos/delete.svg" class="iconsimagehover">Delete&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>' +
+                            '<li onclick="download(\'' + arrayofframes[i]["frame_data"] + '\');"><span><img src="svglogos/download.svg" class="iconsimagehover">Download</span></li>' +
+                            '<li onclick="deleteframe(\'' + arrayofframes[i]["frame_id"] + '\');"><span><img src="svglogos/delete.svg" class="iconsimagehover">Delete&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li>' +
                             '</ul>' +
                             '</div>'
                         temp += '</div>'
@@ -128,8 +132,7 @@ function getframes() {
                 alertpopup(this.responseText, 'open');
             }
         };
-
-        xhttp.open("GET", "http://104.236.25.178/api/v1/frames", true);
+        xhttp.open("GET", "https://api.iwasat.events/api/v1/frames", true);
         xhttp.setRequestHeader("Accept", "application/json");
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.setRequestHeader("Authorization", `Bearer ${sessionStorage.getItem('token')}`);
@@ -146,7 +149,7 @@ function saveframe() {
         var xhr = new XMLHttpRequest();
         loader('show');
         xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState == 4 && this.status == 201) {
                 loader('hide');
                 alertpopup('Added Successfully', 'open');
             } else if (this.readyState == 4 && this.status == 401) {
@@ -154,7 +157,7 @@ function saveframe() {
                 alertpopup('Error While Saving\nLogin Again', 'open');
             }
         };
-        xhr.open("POST", "http://104.236.25.178/api/v1/frames");
+        xhr.open("POST", "https://api.iwasat.events/api/v1/frames");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader("Authorization", `Bearer ${sessionStorage.getItem("token")}`);
@@ -163,17 +166,11 @@ function saveframe() {
 
 }
 
-function logout() {
+function logout(win) {
     sessionStorage.removeItem('token');
     createordestroybutton('index');
     createordestroybutton('dashboard');
-}
-
-function alertpopup(text, par) {
-    document.getElementById('alerttext').innerHTML = text;
-    if (par == 'open') {
-        $('#alertpopup').modal('show');
-    } else {
-        $('#alertpopup').modal('hide');
+    if(win=='gallery'){
+        $('#loginpopup').modal('show');
     }
 }
